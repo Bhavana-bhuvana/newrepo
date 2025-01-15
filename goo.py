@@ -1,3 +1,12 @@
+#executed in google colab
+!pip install pytesseract
+!pip install pytesseract pandas
+!pip install PyPDF2
+!pip install pytesseract pdf2image
+!pip install PyMuPDF
+
+
+
 import cv2
 import pandas as pd
 import pytesseract
@@ -5,9 +14,8 @@ import re
 import fitz  # PyMuPDF for handling PDF files
 import os
 from PIL import Image
+from google.colab import files
 
-# Specify the path to Tesseract if not in PATH
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # Function to extract text from an image
 def extract_text_from_image(image_path):
@@ -36,24 +44,20 @@ def extract_test_results(text):
 # Main function
 def main():
     # Ask user for the file path
-    file_path = input("Enter the file path (image or PDF): ")
-
-    if not os.path.exists(file_path):
-        print(f"File not found: {file_path}")
-        return
-
-
-    # Check the file extension
-    _, file_extension = os.path.splitext(file_path)
+    uploaded= files.upload()
+    #filters if user inputs more than one file
+    image_path = list(uploaded.keys())[0]
+    #splits the file name into two parts: the base name and the extension and takes only extension
+    file_extension = os.path.splitext(image_path)[1].lower()
 
     if file_extension.lower() in ['.jpg', '.jpeg', '.png', '.webp']:
         # Extract text from image
         print("Processing image...")
-        text = extract_text_from_image(file_path)
+        text = extract_text_from_image(image_path)
     elif file_extension.lower() == '.pdf':
         # Extract text from PDF
         print("Processing PDF...")
-        text = extract_text_from_pdf(file_path)
+        text = extract_text_from_pdf(image_path)
     else:
         print("Unsupported file type.")
         return
@@ -76,6 +80,5 @@ def main():
         print("No test results found.")
 
 # Run the main function
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
-
