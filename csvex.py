@@ -5,8 +5,6 @@ import re
 import os
 from PIL import Image
 import pdfplumber
-from networkx.algorithms.traversal import dfs_successors
-
 # Specify the path to Tesseract if not in PATH
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
