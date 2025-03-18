@@ -39,8 +39,7 @@ public class HelloWorldController {
             // Step 1: Extract text from file (using your existing logic)
             // Step 2: Convert extracted data into Camunda JSON format
             JsonArray camundaInput = textExtractionService.extractText(file).getAsJsonArray();
-            //starting camunda
-            startCamundaAndRunDMN();
+        
             // Step 3: Call Camunda API and return decision result
             JsonArray allResponses = new JsonArray();
             if (camundaInput.size() > 0) {
