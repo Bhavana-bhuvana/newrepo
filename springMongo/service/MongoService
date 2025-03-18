@@ -1,0 +1,135 @@
+package org.example.sercice;
+
+/*import com.mongodb.client.*;
+import org.bson.Document;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
+
+@Service
+public class MongoService {
+    private final MongoCollection<Document> collection;
+
+    public MongoService() {
+        // Connect to MongoDB
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = mongoClient.getDatabase("women");
+        this.collection = database.getCollection("users");
+    }
+
+    // Insert a User
+    public void insertUser(String name, String email, int age) {
+        Document user = new Document("name", name)
+                .append("email", email)
+                .append("age", age);
+        collection.insertOne(user);
+    }
+
+    // Get All Users
+    public List<Document> getAllUsers() {
+        List<Document> users = new ArrayList<>();
+        collection.find().into(users);
+        return users;
+    }
+
+    // Get a User by Email
+    public Document getUserByEmail(String email) {
+        return collection.find(eq("email", email)).first();
+    }
+
+    // Update a User's Age
+    public boolean updateUserAge(String email, int newAge) {
+        return collection.updateOne(eq("email", email), set("age", newAge)).getModifiedCount() > 0;
+    }
+
+    // Delete a User
+    public boolean deleteUser(String email) {
+        return collection.deleteOne(eq("email", email)).getDeletedCount() > 0;
+    }
+}
+#2
+import com.mongodb.client.*;
+import org.bson.Document;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class MongoService {
+    private final MongoCollection<Document> collection;
+
+    public MongoService() {
+        // Connect to MongoDB
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = mongoClient.getDatabase("women");
+        this.collection = database.getCollection("users");
+    }
+
+    // Insert User with Dynamic JSON Array
+    public void insertUser(String name, int age, List<Map<String, Object>> testResults) {
+        Document user = new Document("name", name)
+                .append("age", age)
+                .append("testResults", testResults); // Storing JSON array inside MongoDB
+        collection.insertOne(user);
+    }
+}*/
+
+import com.mongodb.client.*;
+import org.bson.Document;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
+
+@Service
+public class MongoService {
+    private final MongoCollection<Document> collection;
+
+    public MongoService() {
+        // Connect to MongoDB
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = mongoClient.getDatabase("women");
+        this.collection = database.getCollection("users");
+    }
+
+    //  Insert User (NO EMAIL, Only Name, Age & Test Results)
+    public void insertUser(String name, int age, List<Map<String, Object>> testResults) {
+        Document user = new Document("name", name)
+                .append("age", age)
+                .append("testResults", testResults);
+
+        collection.insertOne(user);
+    }
+
+    //  Get All Users
+    public List<Document> getAllUsers() {
+        List<Document> users = new ArrayList<>();
+        collection.find().into(users);
+        return users;
+    }
+
+    //  Get a User by Name
+    public Document getUserByName(String name) {
+        return collection.find(eq("name", name)).first();
+    }
+
+    //  Update User Age by Name
+    public boolean updateUserAge(String name, int newAge) {
+        return collection.updateOne(eq("name", name), set("age", newAge)).getModifiedCount() > 0;
+    }
+
+    //  Delete a User by Name
+    public boolean deleteUser(String name) {
+        return collection.deleteOne(eq("name", name)).getDeletedCount() > 0;
+    }
+}
+
+
+
