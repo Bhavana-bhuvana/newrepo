@@ -1,0 +1,47 @@
+https://streamlit.io/
+strreamlit
+
+https://blog.postman.com/rest-api-examples/ 
+rest api
+https://medium.com/@denis.verkhovsky/spring-how-annotations-work-part-1-3f08f34ff36f
+annotations
+https://stackoverflow.com/questions/182393/xml-configuration-versus-annotation-based-configuration
+annotation and xml configuration
+https://www.reddit.com/r/learnprogramming/comments/1fl8o3f/can_someone_please_explain_apis_to_me_like_rest/?rdt=51819
+api
+https://www.directual.com/blog/rest-api-vs-api
+rest api vs api
+
+
+
+To use your computer as a server, you'll need to install and configure server software (like a web server or file sharing server) and potentially open specific ports on your router. 
+Here's a breakdown of the process:
+1. Choose Server Software:
+Web Server: If you want to host a website, you'll need software like Apache or Nginx. 
+File Sharing Server: For sharing files on a network, consider Samba or Nextcloud. 
+Media Server: If you want to stream media, Plex or Kodi are good options. 
+Other Options: You can also set up VPN servers, backup servers, or print servers. 
+2. Install Server Software:
+Download and install the chosen server software on your computer.
+Follow the software's installation instructions. 
+3. Configure Server Settings:
+User Accounts:
+Create user accounts with appropriate permissions for accessing the server. 
+Shared Folders:
+Specify which folders or resources should be shared by the server. 
+Ports:
+Open the necessary ports on your router's firewall to allow access to the server (e.g., port 80 for web servers). 
+Firewall:
+Configure your computer's firewall to allow traffic to and from the server's ports. 
+4. Make Your Computer Discoverable:
+Network Settings: Ensure your computer is discoverable on your network. 
+Public IP Address: If you need to access the server from outside your network, you'll need a public IP address. 
+5. Security Considerations:
+Strong Passwords: Use strong passwords for all user accounts. 
+Firewall Rules: Implement strict firewall rules to protect your server. 
+Regular Updates: Keep your server software and operating system up to date with the latest security patches. 
+Example: Setting up a File Sharing Server
+Choose Software: Install Samba or Nextcloud.
+Share Folders: Select the folders you want to share and configure sharing permissions.
+Network Settings: Make sure your computer is discoverable on the network.
+Connect Clients: Other computers on the network can then access the shared folders by mapping a network drive. 
