@@ -91,7 +91,6 @@ The `pom.xml` (Project Object Model) file is an essential configuration file in 
 
 ---
 
-### Explanation of the Provided `pom.xml` Content
 
 #### Parent Section
 
