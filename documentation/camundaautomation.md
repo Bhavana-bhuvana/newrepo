@@ -21,12 +21,56 @@ This project integrates **Spring Boot** with **Camunda BPM** to process medical 
   
 - Each test is evaluated separately except for `sodium` and `potassium`, which are processed together under **Electrolytes DMN**.
 
-### 3. Camunda DMN Execution
-- Camunda BPM is started if not already running.
-- Each test result is sent to Camunda’s REST API:
-  ```http
-  POST http://localhost:8080/engine-rest/decision-definition/key/{dmnKey}/evaluate
-  ```
+### Explanation of URL Formation
+
+The URL used in your project for calling Camunda's REST API is:
+
+```
+POST http://localhost:8080/engine-rest/decision-definition/key/{dmnKey}/evaluate
+```
+
+#### Breaking It Down:
+1. **`http://localhost:8080/`**  
+   - `http://` → Specifies the HTTP protocol.
+   - `localhost` → Refers to the machine where Camunda is running. This means your API is currently accessible only from your system.
+   - `8080` → The port where Camunda is running. If needed, this can be changed in Camunda's configuration.
+
+2. **`engine-rest/`**  
+   - This is the base path for Camunda's REST API. It allows external applications to interact with Camunda using HTTP requests.
+
+3. **`decision-definition/key/{dmnKey}/evaluate`**  
+   - `decision-definition` → Specifies that we are accessing decision models (DMN tables).
+   - `key/{dmnKey}` → `{dmnKey}` is a placeholder that will be replaced by the actual key of the DMN table you want to evaluate (e.g., `Decision_01t35it`).
+   - `evaluate` → This endpoint is used to send input data to the DMN table for processing.
+
+---
+
+### Customization for Your Use
+You can modify the URL based on your requirements:
+
+1. **Change `localhost` to a remote server**  
+   If you want to allow other systems to access Camunda, replace `localhost` with your system's IP or a domain name:
+   ```
+   POST http://192.168.1.100:8080/engine-rest/decision-definition/key/{dmnKey}/evaluate
+   ```
+   - If deploying on the cloud, replace with a public URL (e.g., `http://yourdomain.com:8080/`).
+
+2. **Change the port number**  
+   If another service is running on port 8080, you can configure Camunda to use a different port:
+   - Update Camunda's `server.port` in its configuration.
+   - Change your API URL accordingly:
+     ```
+     POST http://localhost:9090/engine-rest/decision-definition/key/{dmnKey}/evaluate
+     ```
+
+3. **Use HTTPS for security**  
+   If deploying in production, switch to HTTPS:
+   ```
+   POST https://yourdomain.com/engine-rest/decision-definition/key/{dmnKey}/evaluate
+   ```
+   - You need an SSL certificate for this.
+
+Would you like me to guide you through setting up a custom domain or securing your API?
 - The response includes:
   - **Risk Category** (e.g., Low, Medium, High)
   - **Score** (used for final scoring)
