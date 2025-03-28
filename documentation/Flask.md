@@ -442,8 +442,7 @@ app.run(host='0.0.0.0', port=8000)
    ```
    ngrok http 8000
    ```
-4. **Copy the public URL** that ngrok provides (e.g., `https://random.ngrok.io`) and use it to access your API from anywhere.
-  ```
+
 
   
 
