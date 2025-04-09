@@ -23,7 +23,7 @@ public class ProcessController {
             Integer age = (Integer) requestData.get("age");
             List<Map<String, Object>> testResults = (List<Map<String, Object>>) requestData.get("testResults");
 
-            mongoService.insertUser(name, age, testResults); // ✅ Removed email
+            mongoService.insertUser(name, age, testResults); //  Removed email
             return ResponseEntity.ok("User added successfully with test results!");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
